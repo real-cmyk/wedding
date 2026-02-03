@@ -11,7 +11,32 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body id="top">
+<body id="top" class="locked">
+
+
+<div id="password-overlay">
+  <div class="password-box">
+    <h2>Geschützter Bereich</h2>
+    <p>Bitte Passwort eingeben:</p>
+    <input type="password" id="password-input" />
+    <button onclick="checkPassword()">OK</button>
+    <p id="password-error"></p>
+  </div>
+</div>
+
+<div id="letter-overlay" style="display:none;">
+  <div class="envelope" onclick="openLetter()">
+    <div class="envelope-back"></div>
+
+    <div class="envelope-flap"></div>
+
+    <div class="seal">J&nbsp;♥&nbsp;J</div>
+
+    <div class="letter-label">Einladung öffnen</div>
+  </div>
+</div>
+
+
 
 <!-- HEADER -->
 <header class="topbar" id="topbar">
@@ -27,10 +52,12 @@
 
 <!-- ANNOUNCEMENT -->
 <section class="announcement">
+  <hr width=device-width-100 size=1>
   <h1>Wir heiraten!</h1>
-  <p class="date">Affinghausen – 29. August 2026</p>
+  <p class="date">29. August 2026</p>
   <h2 id="guest-names"></h2>
   <p>Wir wollen unsere Hochzeit mit unseren Lieblingsmenschen feiern.</p>
+  <hr width=device-width-100 size=1>
 </section>
 
 <!-- EINLADUNG -->
@@ -38,7 +65,7 @@
   <div class="section center">
     <h2>Einladung</h2>
     <p>
-      Wir freuen uns sehr, diesen besonderen Tag mit euch zu feiern.<br><br>
+      Wir freuen uns sehr, diesen besonderen Tag mit euch zu feiern.<br>
       Auf dieser Seite findet ihr alle wichtigen Infos zur Hochzeit:<br><br>
       Ablauf, Anfahrt, Hotels, Fragen und Antworten sowie die Rückmeldung zur Einladung.
     </p>
@@ -50,8 +77,8 @@
   <div class="section center">
     <h2>Tagesablauf</h2>
     <ul class="timeline">
-      <li>Sektempfang – 14 Uhr</li>
-      <li>Freie Trauung</li>
+      <li>Sektempfang – 14:00 Uhr</li>
+      <li>Freie Trauung – 14:30 Uhr</li>
       <li>Kaffee & Kuchen</li>
       <li>Dinner</li>
       <li>Party – Open End</li>
@@ -66,7 +93,8 @@
       <h2>Location & Anfahrt</h2>
       <p>Unsere Feier findet an folgender Adresse statt:</p>
       <p><strong>Bergstraße 48<br>27257 Affinghausen</strong></p>
-      <p>Bitte parkt eure PKW in den umliegenden Straßen.</p>
+      <p>Wir bitten euch bei Anfahrt mit dem PKW, diesen in den umliegenden Straßen abzustellen.
+</p>
     </div>
 
     <iframe src="https://maps.google.com/maps?q=Bergstraße%2048%2C%2027257%20Affinghausen&z=13&output=embed"></iframe>
@@ -81,12 +109,12 @@
     <p>
       Damit ihr den Abend genießen könnt, haben wir im Hotel Frida in Bassum einige Zimmer
       bis zum <strong>15. März 2026</strong> für euch reserviert.<br>
-      Stichwort: <strong>„Hochzeit Julia & Jonas“</strong>.
+      Sichert euch gern eines davon unter dem Stichwort:<br> <strong>„Hochzeit Julia & Jonas“</strong>.
     </p>
 
     <p>
-      Auf dem Grundstück unserer Location haben wir eine Zeltwiese eingerichtet.
-      Kleine Camper sind ebenfalls möglich.
+      Auf dem Grundstück unserer Location haben wir für euch eine <strong>Zeltwiese</strong> eingerichtet. Hier könnt ihr eure Zelte aufschlagen oder mit kleinen Campern anreisen. Der Check-In ist über unsere Trauzeugen möglich. 
+
     </p>
 
     <p><strong>Weitere Adressen für Übernachtungen:</strong></p>
@@ -135,23 +163,24 @@
 <details>
   <summary>Geschenke</summary>
   <p>
-    Euer Kommen ist für uns das größte Geschenk!<br><br>
+    Euer Erscheinen ist für uns das größte Geschenk!<br><br>
     Wenn ihr uns dennoch etwas schenken möchtet, freuen wir uns über einen Beitrag zu unserer Hochzeitsreise – so können wir unvergessliche gemeinsame Erinnerungen sammeln.
   </p>
   <p>
+<br>
     <strong>Bankverbindung:</strong><br>
-    Kontoinhaber: Jonas Kriegel und Julia Klause<br>
-    IBAN: DE20 1203 0000 1200 8958 73<br>
+    Kto.Inhaber:  Jonas Kriegel und Julia Klause<br>
+    IBAN: 	  DE20 1203 0000 1200 8958 73<br>
     Bankinstitut: DKB<br>
-    BIC: BYLADEM1001
+    BIC:	  BYLADEM1001
   </p>
 </details>
 
 <details>
   <summary>Fotos</summary>
   <p>
-    Während der Trauung und der Feier begleitet uns Alexander Hallmann – ein professioneller Fotograf.<br>
-    Ihr dürft daher nicht zum Handy greifen – genießt den Moment einfach mit uns.
+    Während der Trauung und der Feier begleitet uns Alexander Hallmann - ein professioneller Fotograf.
+Ihr müsst daher nicht zum Handy greifen – genießt den Moment einfach mit uns.
   </p>
   <p>
     Die Fotos stellen wir im Anschluss auf dieser Seite für euch bereit.
@@ -164,24 +193,23 @@
 <details>
   <summary>Transport</summary>
   <p>
-    Für den Transfer zwischen Hotel und Location steht euch unser Freund Florian Zuhls vom Unternehmen Taxi3000 zur Verfügung.<br>
-    Er bringt euch zuverlässig hin und zurück.
+    Für den Transfer zwischen Hotel und Location steht euch unser Freund Florian Zuhl vom Unternehmen Taxi3000 zur Verfügung. 
   </p>
   <p>
     📞 Taxi3000 – 04241 3000<br>
-    <a href="https://taxi-bassum.com/" target="_blank">https://taxi-bassum.com/</a>
   </p>
 </details>
 
 <details>
   <summary>Standesamt</summary>
   <p>
-    Unsere standesamtliche Trauung findet im kleinen Kreis statt.<br>
-    Zum Anstoßen freuen wir uns aber über jedes bekannte Gesicht.
+    Unsere standesamtliche Trauung findet im kleinen Kreis statt.<br><br>
+    Zum Anstoßen freuen wir uns aber über jedes bekannte Gesicht.<br><br>
   </p>
   <p>
-    <strong>Location:</strong> Sparrenburg – Am Sparrenberg 38, 33602 Bielefeld<br>
-    <strong>Datum / Uhrzeit:</strong> 07. August 2026 · 11:30 Uhr
+    	<p align="center"> <strong>Sparrenburg</strong>  </p>
+	<p align="center"> <strong>Am Sparrenberg 38, 33602 Bielefeld</strong>  </p>
+	<p align="center"> <strong>07. August 2026 · 11:30 Uhr</strong>  </p>
   </p>
 </details>
 
@@ -202,9 +230,11 @@
 <!-- TRAUZEUGEN -->
 <section class="beige">
   <div class="section center">
-    <p>Unsere Trauzeuginnen und Trauzeugen begleiten uns durch den Tag.</p>
-    <p>Maike Schäfer – Sabrina Brinkmann – Robin Schöpe – Marcel Kunst – Frederik Coskun</p>
-    <p>Kontakt: Robin Schöpe · +49 152 57310285</p>
+    <p>Unsere Trauzeuginnen und Trauzeugen  unterstützen uns bei der Planung, begleiten uns durch den Tag und sind eure Ansprechpersonen, falls ihr Fragen habt. 
+</p>
+    <p><strong>Maike Schäfer – Sabrina Brinkmann – Robin Schöpe – Marcel Kunst – Frederik Coskun</strong></p>
+    <p>Für spezielle Fragen oder Ideen die ihr teilen wollt meldet euch gerne bei Robin Schöpe unter +49152/57310285.
+</p>
   </div>
 </section>
 
@@ -212,7 +242,7 @@
 <section class="white">
   <div class="section">
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeVLbP7JIa-uC_9yS5fqsJCHujB9F-05gWUVdi2sWjcTnN0vA/viewform?embedded=true"
-            width="100%" height="720"></iframe>
+            width="100%" height="800"></iframe>
   </div>
 </section>
 
@@ -248,7 +278,7 @@
 </section>
 
 <footer>
-  Julia & Jonas · 29.08.2026
+  Julia & Jonas · 29. August 2026
 </footer>
 
 <script>
@@ -275,6 +305,46 @@
 }
 
 </script>
+
+
+<script>
+  const PASSWORD = "Klause";
+
+  function checkPassword() {
+    const input = document.getElementById("password-input").value;
+    const error = document.getElementById("password-error");
+
+    if (input === PASSWORD) {
+      document.getElementById("password-overlay").style.display = "none";
+      document.getElementById("letter-overlay").style.display = "flex";
+    } else {
+      error.textContent = "Falsches Passwort";
+    }
+  }
+
+  function openLetter() {
+    const env = document.querySelector(".envelope");
+
+    // Sound (leise & elegant)
+    const audio = new Audio("sounds/paper-open.mp3");
+    audio.volume = 0.35;
+    audio.play().catch(() => {});
+
+    // Blur aktivieren
+    document.body.classList.add("blur");
+
+    // Umschlag öffnen + zoomen
+    env.classList.add("open");
+
+    // Nach Animation freigeben
+    setTimeout(() => {
+      document.getElementById("letter-overlay").style.display = "none";
+      document.body.classList.remove("locked", "blur");
+    }, 1300);
+  }
+
+</script>
+
 
 </body>
 </html>
