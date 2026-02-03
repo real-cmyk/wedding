@@ -188,3 +188,138 @@ footer {
   max-width: 1200px;
 }
 
+/* ===== Passwort ===== */
+#password-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-box {
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+}
+
+/* ===== Brief Overlay ===== */
+#letter-overlay {
+  position: fixed;
+  inset: 0;
+  background: #7b2943;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== Umschlag ===== */
+.envelope {
+  position: relative;
+  width: 340px;
+  height: 220px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+/* Umschlag hinten */
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #f6f2eb;
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
+
+/* Klappe */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 55%;
+  background: #e6d5c5;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top;
+  transition: transform 0.9s ease;
+  z-index: 3;
+}
+
+/* Wachssiegel */
+.seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 64px;
+  height: 64px;
+  background: radial-gradient(circle at 30% 30%, #b13a4a, #7b1f2f);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.4),
+              0 6px 12px rgba(0,0,0,0.35);
+  color: #f6eaea;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+}
+
+/* Text */
+.letter-label {
+  position: absolute;
+  bottom: 18px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  color: #7b2943;
+  z-index: 2;
+}
+
+/* ===== Öffnungszustand ===== */
+.envelope.open .envelope-flap {
+  transform: rotateX(-160deg);
+  transition-delay: 0.1s;
+}
+
+.envelope.open .seal {
+  transform: translate(-50%, -50%) scale(0.7);
+  opacity: 0;
+}
+
+body.locked > *:not(#password-overlay):not(#letter-overlay) {
+  display: none;
+}
+/* ===== Zoom + Fade beim Öffnen ===== */
+.envelope {
+  transition:
+    transform 1.3s cubic-bezier(.22,.61,.36,1),
+    opacity 1.1s ease;
+}
+
+/* Zoom-in Effekt */
+.envelope.open {
+  transform: scale(2.2);
+  opacity: 0;
+}
+
+/* ===== Hintergrund-Blur während Animation ===== */
+body.locked.blur > *:not(#password-overlay):not(#letter-overlay) {
+  filter: blur(12px);
+  transition: filter 0.6s ease;
+}
+
+@media (max-width: 768px) {
+  .envelope.open {
+    transform: scale(1.6);
+  }
+}
+
