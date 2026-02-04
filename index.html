@@ -19,6 +19,7 @@
     <h2>Geschützter Bereich</h2>
     <p>Bitte Passwort eingeben:</p>
     <input type="password" id="password-input" />
+<p class="password-hint">Familienname von Julia</p>
     <button onclick="checkPassword()">OK</button>
     <p id="password-error"></p>
   </div>
@@ -287,24 +288,78 @@ Ihr müsst daher nicht zum Handy greifen – genießt den Moment einfach mit uns
   window.addEventListener("scroll", () => {
     bar.classList.toggle("small", window.scrollY > 60);
   });
+</script>
 
-  /* Gäste aus URL */
+<script>
+  console.log("GUEST SCRIPT START");
+
   const params = new URLSearchParams(window.location.search);
   const guest = params.get("guest");
   const el = document.getElementById("guest-names");
 
-  if (guest) {
-  const names = decodeURIComponent(guest)
-    .replace(/\+/g, " ")
-    .split(",")
-    .map(n => n.trim());
+  if (guest && el) {
+    // Namen aus URL (Browser liefert z.B. "Tom Pauk Lina")
+    const names = guest
+      .split(/\s+/)
+      .map(n => n.trim())
+      .filter(Boolean);
 
-  el.textContent = names.join("  –  ");
-} else {
-  el.textContent = "Liebe Gäste";
-}
+    // Container leeren
+    el.innerHTML = "";
 
+    // Namen einsetzen
+names.forEach((name, index) => {
+  const span = document.createElement("span");
+  span.classList.add("guest-part");
+  span.textContent = name;
+  el.appendChild(span);
+
+  // Trenner nur zwischen Namen
+  if (index < names.length - 1) {
+    const sep = document.createElement("span");
+	sep.classList.add("guest-separator");
+
+    if (names.length === 2) {
+      // genau zwei Gäste → &
+      sep.innerHTML = "&nbsp;&nbsp;&amp;&nbsp;&nbsp;";
+    } else {
+      // drei oder mehr → ·
+      sep.innerHTML = "&nbsp;&nbsp;·&nbsp;&nbsp;";
+    }
+
+    el.appendChild(sep);
+  }
+});
+
+    /* Scroll-Trigger: Mitte des Viewports */
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document
+              .querySelectorAll(".guest-part")
+              .forEach((p, i) => {
+                setTimeout(() => p.classList.add("in-view"), i * 80);
+              });
+            observer.disconnect(); // bleibt stehen
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-40% 0px -40% 0px", // ≈ Viewport-Mitte
+        threshold: 0
+      }
+    );
+
+    observer.observe(el);
+
+  } else {
+    el.textContent = "Liebe Gäste";
+  }
 </script>
+
+
 
 
 <script>
