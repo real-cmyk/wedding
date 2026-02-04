@@ -186,15 +186,17 @@ Ihr müsst daher nicht zum Handy greifen – genießt den Moment einfach mit uns
   <p>
     Die Fotos stellen wir im Anschluss auf dieser Seite für euch bereit.
   </p>
-  <p>
-    Mit dem Erscheinen auf unserer Hochzeit erklärt sich jeder Gast damit einverstanden, dass Foto- oder Videoaufnahmen von ihr oder ihm gemacht werden.
-  </p>
+  <p class="photo-consent">
+  Mit dem Erscheinen auf unserer Hochzeit erklärt sich jeder Gast damit einverstanden,
+  dass Foto- oder Videoaufnahmen von ihr oder ihm gemacht werden.
+</p>
+
 </details>
 
 <details>
   <summary>Transport</summary>
   <p>
-    Für den Transfer zwischen Hotel und Location steht euch unser Freund Florian Zuhl vom Unternehmen Taxi3000 zur Verfügung. 
+    Für den Transfer zwischen Hotel und Location steht euch unser Freund Florian Zuhl vom Unternehmen Taxi3000 für faire Preise zur Verfügung. 
   </p>
   <p>
     📞 Taxi3000 – 04241 3000<br>
@@ -318,6 +320,7 @@ names.forEach((name, index) => {
   if (index < names.length - 1) {
     const sep = document.createElement("span");
 	sep.classList.add("guest-separator");
+        
 
     if (names.length === 2) {
       // genau zwei Gäste → &
@@ -336,11 +339,14 @@ names.forEach((name, index) => {
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            document
-              .querySelectorAll(".guest-part")
-              .forEach((p, i) => {
-                setTimeout(() => p.classList.add("in-view"), i * 80);
-              });
+            const parts = el.querySelectorAll(".guest-part, .guest-separator");
+
+parts.forEach((p, i) => {
+  setTimeout(() => {
+    p.classList.add("in-view");
+  }, i * 140);   // langsamer & ruhiger
+});
+
             observer.disconnect(); // bleibt stehen
           }
         });
