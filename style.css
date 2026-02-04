@@ -192,7 +192,7 @@ footer {
 #password-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.78);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -200,13 +200,86 @@ footer {
 }
 
 .password-box {
-  background: white;
-  padding: 40px;
-  border-radius: 8px;
-  text-align: center;
-  max-width: 320px;
-  width: 100%;
+  width: 320px;
+  max-width: calc(100vw - 48px);
+  background: #f6f2eb;            /* ← leichtes Beige */
+  border-radius: 12px;
+  height: 360px;
+
+  padding: 32px 28px;
+  box-sizing: border-box;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+  text-align: center; 
+  display: flex;
+  flex-direction: column;
 }
+
+.password-box h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.password-box > p:first-of-type {
+  margin-bottom: 48px; /* Abstand = Goldener Schnitt */
+}
+
+
+.password-box input {
+  font-size: 22px;
+  padding: 16px;
+  text-align: center;
+}
+
+
+.password-hint {
+  font-size: 14px;
+  font-style: italic;
+  color: #7b2943;
+  opacity: 0.85;
+
+  margin: 10px 0 22px;
+}
+
+
+
+.password-box button {
+  padding: 10px 30px;      /* ← etwas größer */
+  font-size: 17px;         /* ← besser lesbar */
+  border-radius: 6px;
+  border: 1px solid #7b2943;
+  background: transparent;
+  color: #7b2943;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: center;
+  margin-top: auto;   /* 👈 DAS erzeugt den Goldenen Schnitt */
+}
+
+
+.password-box button:hover {
+  background: #7b2943;
+  color: #fff;
+}
+#password-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 22px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid rgba(123,41,67,0.35);
+  border-radius: 8px;
+  background: #fff;
+  outline: none;
+  margin-bottom: 8px;
+}
+
+#password-input:focus{
+  border-color: #7b2943;
+  box-shadow: 0 0 0 3px rgba(123,41,67,0.18);
+}
+
+
+
 
 /* ===== Brief Overlay ===== */
 #letter-overlay {
@@ -322,4 +395,49 @@ body.locked.blur > *:not(#password-overlay):not(#letter-overlay) {
     transform: scale(1.6);
   }
 }
+
+
+/* ===== Guest Names Scroll Animation ===== */
+
+#guest-names {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-wrap: wrap;          /* ✅ erlaubt Umbruch */
+  row-gap: 8px;             /* Abstand zwischen Zeilen */
+  column-gap: 0;            /* Trenner regeln wir selbst */
+
+  text-align: center;
+}
+
+
+/* einzelne Namen */
+.guest-part {
+  display: inline-block;
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.6s ease;
+}
+
+.guest-separator {
+  white-space: nowrap;      /* Trenner bleibt zusammen */
+}
+
+
+/* Zielzustand */
+.guest-part.in-view {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+
+@media (max-width: 600px) {
+  .guest-from-left { transform: translateX(-80px); }
+  .guest-from-right { transform: translateX(80px); }
+}
+
+
 
